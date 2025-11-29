@@ -22,6 +22,7 @@ class ContentStrategyInput(BaseModel):
     key_messages: List[str]
     recommended_formats: List[str]
     mandatory_inclusions: Dict[str, List[str]]
+    channel_playbook: Dict[str, List[str]]  # Added
     tone_and_voice: str
 
 
@@ -419,6 +420,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
