@@ -16,12 +16,13 @@ class MarketInput(BaseModel):
 
 class ContentStrategyInput(BaseModel):
     core_message: str
-    content_goals: str
-    audience_motivations: str
-    strategic_angles: str
-    key_messages: str
+    content_goals: List[str]
+    audience_motivations: List[str]
+    strategic_angles: List[str]
+    key_messages: List[str]
     requested_format: str
     tone_and_voice: str
+
 
 
 # ----------- OUTPUT SCHEMA -----------
@@ -418,6 +419,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
