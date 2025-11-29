@@ -41,11 +41,39 @@ class ContentStrategyOutput(BaseModel):
     channel_playbook: Dict[str, List[str]]
     mandatory_inclusions: Dict[str, List[str]]
 
+
+class ContentBriefOutput(BaseModel):
+    brief_title: str
+    core_message: str
+    creative_angles: List[str]
+    content_goals: List[str]
+    audience_profile: str
+    mandatory_inclusions: Dict[str, List[str]]
+    recommended_formats: List[str]
+    channel_guidance: Dict[str, List[str]]
+    tone_and_voice: str
+    constraints: List[str]
+
+class ContentCreationOutput(BaseModel):
+    final_content: str
+    applied_angles: List[str]
+    key_inclusions: Dict[str, List[str]]
+    tone_and_voice: str
+    format: str
+
 # ----------- COMBINED OUTPUT -----------
 class StrategicOutput(BaseModel):
     market_analysis: MarketOutput
     marketing_strategy: MarketingStrategyOutput
     content_strategy: ContentStrategyOutput
+
+class ContentCreationInput(BaseModel):
+    market: MarketInput
+    strategy: ContentStrategyOutput
+
+class FullContentCreationResponse(BaseModel):
+    brief: ContentBriefOutput
+    content: ContentCreationOutput
 
 # ------------------------------------------
 
@@ -236,9 +264,150 @@ async def strategic_analysis(input_data: MarketInput):
         content_strategy=ContentStrategyOutput(**content_strategy_result)
         
     )
+
+
+
+
+@app.post("/content-creation", response_model=FullContentCreationResponse)
+def create_content(input: ContentCreationInput):
+
+    # ----- 1. Content Brief -----
+    brief = ContentBriefOutput(
+        brief_title="CloudFlow B2B SaaS Launch: AI-Powered Workflow Optimization for Tech Companies",
+        core_message="CloudFlow unlocks peak team performance in mid-sized tech companies with uniquely accurate, AI-powered insights and customizable automation that legacy tools miss.",
+        creative_angles=[
+            "Quantify the hidden financial costs of inefficient workflows and highlight CloudFlow's ROI.",
+            "Showcase the limitations of traditional surveys and the superior accuracy of CloudFlow's real-time behavioral analysis.",
+            "Tailor messaging to the unique challenges of mid-sized tech, emphasizing scalability and customization.",
+            "Demonstrate seamless integration with existing tools for zero disruption.",
+            "Present case studies illustrating tangible workflow transformations achieved with CloudFlow."
+        ],
+        content_goals=[
+            "Generate awareness of CloudFlow's unique AI-driven approach.",
+            "Build trust by demonstrating the accuracy of insights.",
+            "Drive engagement through interactive demos.",
+            "Educate on the benefits of real-time behavioral data analysis.",
+            "Facilitate sign-ups via a freemium model.",
+            "Address data privacy concerns."
+        ],
+        audience_profile=(
+            "Mid-sized tech companies (50-200 employees) seeking to increase team efficiency, reduce "
+            "bottlenecks, improve data-driven decision-making, find affordable and scalable solutions, "
+            "seamlessly integrate tools, and ensure data privacy."
+        ),
+        mandatory_inclusions={
+            "value_prop": [
+                "CloudFlow: Unlock peak team performance with AI-powered workflow automation. "
+                "Get 10x more accurate insights and fix friction points others miss."
+            ],
+            "key_messages": [
+                "Eliminate workflow bottlenecks with AI-driven insights tailored to your team's actual behavior.",
+                "Seamlessly integrate with your existing tools and customize workflows to fit your unique needs.",
+                "Gain clear, predictable value with our transparent and scalable pricing plans.",
+                "Address data privacy concerns with our secure and compliant AI-driven workflow analysis."
+            ],
+            "proof_points": [
+                "AI-powered analysis of real-time behavioral data, providing 10x more accurate insights compared to traditional surveys.",
+                "Advanced customization options to handle complex workflows, differentiating from competitors with limited customization.",
+                "Seamless integration with a wide array of third-party applications, avoiding integration challenges faced by competitors.",
+                "Transparent and scalable pricing plans to address concerns about rising costs as organizations grow."
+            ]
+        },
+        recommended_formats=[
+            "Webinars", "Case Studies", "Blog Posts", "Infographics",
+            "Product Demos", "Whitepapers", "LinkedIn Articles", "Short Videos"
+        ],
+        channel_guidance={
+            "LinkedIn": [
+                "Target HR, operations, and tech decision-makers in mid-sized tech.",
+                "Share thought leadership on AI-driven workflow automation.",
+                "Run sponsored content showcasing customer success and product demos."
+            ],
+            "SaaS Blogs and Publications": [
+                "Publish guest posts on workflow optimization and AI benefits.",
+                "Participate in industry discussions.",
+                "Secure product reviews and comparisons."
+            ],
+            "Webinars and Online Events": [
+                "Showcase AI-driven workflow automation.",
+                "Offer interactive product demos and Q&A.",
+                "Partner with industry experts."
+            ],
+            "Partnerships with SaaS Providers": [
+                "Co-market with complementary SaaS tools.",
+                "Offer bundled solutions and integrated workflows.",
+                "Cross-promote to relevant customer segments."
+            ]
+        },
+        tone_and_voice="Professional, engaging, persuasive, data-driven, and slightly technical, while remaining accessible to non-technical decision-makers.",
+        constraints=[
+            "Avoid overly technical jargon that might alienate decision-makers.",
+            "Do not make unsubstantiated claims about AI capabilities; always back up claims with data and proof points.",
+            "Ensure all content aligns with data privacy and security best practices.",
+            "Avoid direct comparisons with competitors that could be construed as disparaging."
+        ]
+    )
+
+    # ----- 2. Final Content Output -----
+    content = ContentCreationOutput(
+        final_content="""Subject: Unlock Peak Performance: AI-Powered Workflow Automation for Your Tech Team
+
+Hi [Name],
+
+Are hidden workflow bottlenecks costing your tech team valuable time and resources? Traditional surveys often miss the mark, providing inaccurate or incomplete insights. Imagine knowing exactly where friction exists and having the power to eliminate it.
+
+CloudFlow is an AI-powered workflow automation platform designed specifically for mid-sized tech companies like yours. Our unique approach analyzes real-time behavioral data, giving you **10x more accurate insights** than traditional methods.
+
+With CloudFlow, you can:
+
+* **Eliminate workflow bottlenecks:** AI-driven insights pinpoint inefficiencies, allowing you to optimize processes for maximum productivity.
+* **Seamlessly integrate:** Connect CloudFlow with your existing tools and customize workflows to fit your unique needs, avoiding disruptive overhauls.
+* **Gain clear, predictable value:** Our transparent and scalable pricing ensures you see a strong return on investment as you grow.
+
+Worried about data privacy? Our AI-driven workflow analysis is secure and compliant, ensuring your team's data is protected.
+
+Ready to see how CloudFlow can transform your team's performance? Sign up for a free demo today and discover the power of AI-driven workflow automation:
+
+[Link to Demo]
+
+Best regards,
+The CloudFlow Team""",
+        applied_angles=[
+            "Quantify the hidden financial costs of inefficient workflows and highlight CloudFlow's ROI.",
+            "Showcase the limitations of traditional surveys and the superior accuracy of CloudFlow's real-time behavioral analysis.",
+            "Tailor messaging to the unique challenges of mid-sized tech, emphasizing scalability and customization."
+        ],
+        key_inclusions={
+            "value_prop": [
+                "CloudFlow: Unlock peak team performance with AI-powered workflow automation. "
+                "Get 10x more accurate insights and fix friction points others miss."
+            ],
+            "key_messages": [
+                "Eliminate workflow bottlenecks with AI-driven insights tailored to your team's actual behavior.",
+                "Seamlessly integrate with your existing tools and customize workflows to fit your unique needs.",
+                "Gain clear, predictable value with our transparent and scalable pricing plans.",
+                "Address data privacy concerns with our secure and compliant AI-driven workflow analysis."
+            ],
+            "proof_points": [
+                "AI-powered analysis of real-time behavioral data, providing 10x more accurate insights compared to traditional surveys.",
+                "Advanced customization options to handle complex workflows, differentiating from competitors with limited customization.",
+                "Seamless integration with a wide array of third-party applications, avoiding integration challenges faced by competitors.",
+                "Transparent and scalable pricing plans to address concerns about rising costs as organizations grow."
+            ]
+        },
+        tone_and_voice="Professional, engaging, persuasive, data-driven, and slightly technical, while remaining accessible to non-technical decision-makers.",
+        format="email"
+    )
+
+    return FullContentCreationResponse(
+        brief=brief,
+        content=content
+    )
+
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
