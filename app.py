@@ -32,10 +32,20 @@ class MarketingStrategyOutput(BaseModel):
     go_to_market_plan: Dict[str, List[str]]
     priorities: List[str]
 
+class ContentStrategyOutput(BaseModel):
+    core_message: str
+    content_goals: List[str]
+    audience_motivations: List[str]
+    strategic_angles: List[str]
+    recommended_formats: List[str]
+    channel_playbook: Dict[str, List[str]]
+    mandatory_inclusions: Dict[str, List[str]]
+
 # ----------- COMBINED OUTPUT -----------
 class StrategicOutput(BaseModel):
     market_analysis: MarketOutput
     marketing_strategy: MarketingStrategyOutput
+    content_strategy: ContentStrategyOutput
 
 # ------------------------------------------
 
@@ -146,12 +156,88 @@ async def strategic_analysis(input_data: MarketInput):
             "Establish partnerships with complementary SaaS providers."
         ]
     }
+
+    content_strategy_result = {
+        "core_message": (
+            "CloudFlow unlocks peak team performance in mid-sized tech companies "
+            "by providing uniquely accurate, AI-powered insights and customizable "
+            "automation that legacy tools miss."
+        ),
+        "content_goals": [
+            "Generate awareness of CloudFlow's unique AI-driven approach to workflow optimization.",
+            "Build trust by demonstrating the accuracy and reliability of CloudFlow's insights.",
+            "Drive engagement through interactive demos and valuable content showcasing workflow improvements.",
+            "Educate the audience on real-time behavioral data vs. traditional surveys.",
+            "Facilitate sign-ups through freemium and targeted content.",
+            "Address data privacy concerns by highlighting security and compliance measures."
+        ],
+        "audience_motivations": [
+            "Increase team efficiency",
+            "Reduce bottlenecks",
+            "Improve decision-making",
+            "Find scalable solutions",
+            "Integrate easily with existing systems",
+            "Ensure data privacy"
+        ],
+        "strategic_angles": [
+            "The Hidden Costs of Inefficient Workflows",
+            "Beyond Surveys: Real Behavioral Insight",
+            "AI-Powered Workflow Automation for Mid-Sized Tech",
+            "Seamless Integration, Zero Disruption",
+            "From Insight to Action: Real-World Transformations"
+        ],
+        "recommended_formats": [
+            "Webinars", "Case Studies", "Blog Posts", "Infographics",
+            "Product Demos", "Whitepapers", "LinkedIn Articles", "Short Videos"
+        ],
+        "channel_playbook": {
+            "LinkedIn": [
+                "Targeted ads to HR & operations leaders.",
+                "Thought leadership on workflow automation.",
+                "Sponsored success-story content."
+            ],
+            "SaaS Blogs and Publications": [
+                "Guest posts",
+                "Industry commentary",
+                "Product review placements"
+            ],
+            "Webinars and Online Events": [
+                "AI workflow automation webinars",
+                "Product demos & Q&A sessions"
+            ],
+            "Partnerships with SaaS Providers": [
+                "Co-marketing efforts",
+                "Bundled workflows",
+                "Joint messaging campaigns"
+            ]
+        },
+        "mandatory_inclusions": {
+            "value_prop": [
+                "CloudFlow: Unlock peak team performance with AI-powered workflow automation."
+            ],
+            "key_messages": [
+                "Eliminate workflow bottlenecks with AI insights.",
+                "Customize and integrate effortlessly.",
+                "Predictable value with transparent pricing.",
+                "Secure and compliant workflow data analysis."
+            ],
+            "proof_points": [
+                "10x more accurate insights than surveys.",
+                "Advanced workflow customization.",
+                "Wide third-party integration support.",
+                "Transparent and scalable pricing."
+            ]
+        }
+    }
     
     return StrategicOutput(
         market_analysis=market_analysis_result,
         marketing_strategy=MarketingStrategyOutput(**marketing_strategy_result)
+        content_strategy=ContentStrategyOutput(**content_strategy_result)
+        
     )
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
