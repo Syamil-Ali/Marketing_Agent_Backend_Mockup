@@ -20,9 +20,9 @@ class ContentStrategyInput(BaseModel):
     audience_motivations: List[str]
     strategic_angles: List[str]
     key_messages: List[str]
-    requested_format: str
+    recommended_formats: List[str]
+    mandatory_inclusions: Dict[str, List[str]]
     tone_and_voice: str
-
 
 
 # ----------- OUTPUT SCHEMA -----------
@@ -419,6 +419,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
