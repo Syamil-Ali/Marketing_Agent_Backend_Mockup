@@ -232,12 +232,13 @@ async def strategic_analysis(input_data: MarketInput):
     
     return StrategicOutput(
         market_analysis=market_analysis_result,
-        marketing_strategy=MarketingStrategyOutput(**marketing_strategy_result)
+        marketing_strategy=MarketingStrategyOutput(**marketing_strategy_result),
         content_strategy=ContentStrategyOutput(**content_strategy_result)
         
     )
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
