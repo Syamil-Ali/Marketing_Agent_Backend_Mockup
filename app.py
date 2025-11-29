@@ -13,6 +13,17 @@ class MarketInput(BaseModel):
     target_audience: str
     primary_goal: str
 
+
+class ContentStrategyInput(BaseModel):
+    core_message: str
+    content_goals: str
+    audience_motivations: str
+    strategic_angles: str
+    key_messages: str
+    requested_format: str
+    tone_and_voice: str
+
+
 # ----------- OUTPUT SCHEMA -----------
 class MarketOutput(BaseModel):
     executive_summary: str
@@ -69,7 +80,7 @@ class StrategicOutput(BaseModel):
 
 class ContentCreationInput(BaseModel):
     market: MarketInput
-    strategy: ContentStrategyOutput
+    strategy: ContentStrategyInput
 
 class FullContentCreationResponse(BaseModel):
     brief: ContentBriefOutput
@@ -407,6 +418,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
