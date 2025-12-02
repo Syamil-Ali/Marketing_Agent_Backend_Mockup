@@ -8,7 +8,7 @@ import httpx
 
 
 class MarketResearchRequest(BaseModel):
-    project_brief: ProjectBrief
+    project_brief: Dict[str, Any]
     max_urls_per_query: int = 2
     max_urls_total: Optional[int] = None
 
@@ -460,6 +460,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
