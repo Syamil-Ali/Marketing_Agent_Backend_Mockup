@@ -111,75 +111,75 @@ LLM_API_URL = "http://your-llm-model-endpoint"  # Replace with your endpoint
 async def market_analysis(input_data: MarketResearchRequest):
     # Static mocked output for testing your model structure without calling external LLM
     mocked_result = {
-   "project_brief":{
-      "request_type":"STRATEGY",
-      "project_title":"SaaS Marketing Strategy for Koboi AI",
-      "product_or_service":"Koboi AI",
-      "business_description":"Koboi AI is the All-in-One AI Marketing Strategist for forward-thinking businesses. We automate the entire marketing process, from deep-web research and competitive analysis to generating a complete, tailored strategy and high-impact content. Stop guessing and start converting.",
-      "marketing_channels":"None",
-      "content_format":"None",
-      "goals":"Acquire 100 users in the first 3 months",
-      "target_audience":"Forward-thinking businesses",
-      "missing_information":[
-         
-      ]
-   },
-   "compiled_summaries":{
-      "top AI marketing strategy platform weaknesses":{
-         "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/":{
-            "relevance":0.9,
-            "impact_score":0.8,
-            "summary":"This article discusses the advantages and disadvantages of using AI in marketing. The key weaknesses identified are data privacy concerns, potential for biases and inaccurate content, and a lack of human creativity. These are critical points to consider when integrating AI into Koboi AI's marketing strategy, ensuring responsible and effective implementation.",
-            "key_points":[
-               "Data privacy is a significant concern for marketers using AI due to the need to collect and analyze large amounts of customer data.",
-               "AI systems can produce biased or inaccurate predictions if trained on data with disproportionate representation.",
-               "AI systems lack human creativity and understanding of nuances, which can limit their ability to generate original and effective content."
-            ],
-            "strategic_insights":[
-               "Koboi AI must prioritize data privacy and transparency to build trust with users.",
-               "Implement rigorous data auditing and bias detection mechanisms to ensure fair and accurate marketing campaigns.",
-               "Focus on AI as a tool to augment human creativity, not replace it, ensuring a balance between automation and unique, engaging content."
-            ]
-         }
-      }
-   },
-   "market_research":{
-      "executive_summary":"AI marketing platforms face challenges related to data privacy, potential for biases, and a lack of human creativity. Koboi AI needs to address these issues by prioritizing data privacy, implementing bias detection mechanisms, and focusing on augmenting human creativity with AI.",
-      "competitors":[
-         
-      ],
-      "market_trends":[
-         
-      ],
-      "audience_insights":[
-         
-      ],
-      "pricing_models":[
-         
-      ],
-      "opportunities":[
-         {
-            "opportunity":"Prioritize data privacy and transparency to build trust with users.",
-            "impact_score":0.9,
-            "confidence":0.9
-         },
-         {
-            "opportunity":"Implement rigorous data auditing and bias detection mechanisms.",
-            "impact_score":0.85,
-            "confidence":0.8
-         },
-         {
-            "opportunity":"Focus on AI as a tool to augment human creativity, not replace it.",
-            "impact_score":0.8,
-            "confidence":0.9
-         }
-      ],
-      "sources":[
-         "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/"
-      ]
-   }
-}
-return mocked_result
+       "project_brief":{
+          "request_type":"STRATEGY",
+          "project_title":"SaaS Marketing Strategy for Koboi AI",
+          "product_or_service":"Koboi AI",
+          "business_description":"Koboi AI is the All-in-One AI Marketing Strategist for forward-thinking businesses. We automate the entire marketing process, from deep-web research and competitive analysis to generating a complete, tailored strategy and high-impact content. Stop guessing and start converting.",
+          "marketing_channels":"None",
+          "content_format":"None",
+          "goals":"Acquire 100 users in the first 3 months",
+          "target_audience":"Forward-thinking businesses",
+          "missing_information":[
+             
+          ]
+       },
+       "compiled_summaries":{
+          "top AI marketing strategy platform weaknesses":{
+             "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/":{
+                "relevance":0.9,
+                "impact_score":0.8,
+                "summary":"This article discusses the advantages and disadvantages of using AI in marketing. The key weaknesses identified are data privacy concerns, potential for biases and inaccurate content, and a lack of human creativity. These are critical points to consider when integrating AI into Koboi AI's marketing strategy, ensuring responsible and effective implementation.",
+                "key_points":[
+                   "Data privacy is a significant concern for marketers using AI due to the need to collect and analyze large amounts of customer data.",
+                   "AI systems can produce biased or inaccurate predictions if trained on data with disproportionate representation.",
+                   "AI systems lack human creativity and understanding of nuances, which can limit their ability to generate original and effective content."
+                ],
+                "strategic_insights":[
+                   "Koboi AI must prioritize data privacy and transparency to build trust with users.",
+                   "Implement rigorous data auditing and bias detection mechanisms to ensure fair and accurate marketing campaigns.",
+                   "Focus on AI as a tool to augment human creativity, not replace it, ensuring a balance between automation and unique, engaging content."
+                ]
+             }
+          }
+       },
+       "market_research":{
+          "executive_summary":"AI marketing platforms face challenges related to data privacy, potential for biases, and a lack of human creativity. Koboi AI needs to address these issues by prioritizing data privacy, implementing bias detection mechanisms, and focusing on augmenting human creativity with AI.",
+          "competitors":[
+             
+          ],
+          "market_trends":[
+             
+          ],
+          "audience_insights":[
+             
+          ],
+          "pricing_models":[
+             
+          ],
+          "opportunities":[
+             {
+                "opportunity":"Prioritize data privacy and transparency to build trust with users.",
+                "impact_score":0.9,
+                "confidence":0.9
+             },
+             {
+                "opportunity":"Implement rigorous data auditing and bias detection mechanisms.",
+                "impact_score":0.85,
+                "confidence":0.8
+             },
+             {
+                "opportunity":"Focus on AI as a tool to augment human creativity, not replace it.",
+                "impact_score":0.8,
+                "confidence":0.9
+             }
+          ],
+          "sources":[
+             "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/"
+          ]
+       }
+    }
+    return mocked_result
 
 
 
@@ -460,6 +460,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
