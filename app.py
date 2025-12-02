@@ -111,75 +111,188 @@ LLM_API_URL = "http://your-llm-model-endpoint"  # Replace with your endpoint
 async def market_analysis(input_data: MarketResearchRequest):
     # Static mocked output for testing your model structure without calling external LLM
     mocked_result = {
-       "project_brief":{
-          "request_type":"STRATEGY",
-          "project_title":"SaaS Marketing Strategy for Koboi AI",
-          "product_or_service":"Koboi AI",
-          "business_description":"Koboi AI is the All-in-One AI Marketing Strategist for forward-thinking businesses. We automate the entire marketing process, from deep-web research and competitive analysis to generating a complete, tailored strategy and high-impact content. Stop guessing and start converting.",
-          "marketing_channels":"None",
-          "content_format":"None",
-          "goals":"Acquire 100 users in the first 3 months",
-          "target_audience":"Forward-thinking businesses",
-          "missing_information":[
-             
-          ]
-       },
-       "compiled_summaries":{
-          "top AI marketing strategy platform weaknesses":{
-             "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/":{
-                "relevance":0.9,
-                "impact_score":0.8,
-                "summary":"This article discusses the advantages and disadvantages of using AI in marketing. The key weaknesses identified are data privacy concerns, potential for biases and inaccurate content, and a lack of human creativity. These are critical points to consider when integrating AI into Koboi AI's marketing strategy, ensuring responsible and effective implementation.",
-                "key_points":[
-                   "Data privacy is a significant concern for marketers using AI due to the need to collect and analyze large amounts of customer data.",
-                   "AI systems can produce biased or inaccurate predictions if trained on data with disproportionate representation.",
-                   "AI systems lack human creativity and understanding of nuances, which can limit their ability to generate original and effective content."
-                ],
-                "strategic_insights":[
-                   "Koboi AI must prioritize data privacy and transparency to build trust with users.",
-                   "Implement rigorous data auditing and bias detection mechanisms to ensure fair and accurate marketing campaigns.",
-                   "Focus on AI as a tool to augment human creativity, not replace it, ensuring a balance between automation and unique, engaging content."
-                ]
-             }
-          }
-       },
-       "market_research":{
-          "executive_summary":"AI marketing platforms face challenges related to data privacy, potential for biases, and a lack of human creativity. Koboi AI needs to address these issues by prioritizing data privacy, implementing bias detection mechanisms, and focusing on augmenting human creativity with AI.",
-          "competitors":[
-              {'Wolters Kluwer N.V.': 'Leading player with machine learning in UpToDate platform'}, {'Oracle': 'Key player partnering with NVIDIA for AI integration in Oracle Cloud Infrastructure'}, {'Epic Systems': 'Collaborated with Microsoft to embed AI in EHR systems'}, {'Optum': 'Key Competitor'}, {'EBSCO': 'Key Competitor'}, {'Elsevier': 'Key Competitor'}, {'Hearst Health': 'Key Competitor'}
-          ],
-          "market_trends":[
-              {'trend': 'AI and machine learning integration', 'velocity': 'accelerating'}, {'trend': 'Cloud-based solutions', 'velocity': 'stable'}, {'trend': 'Integrated CDSS solutions', 'velocity': 'stable'}, {'trend': 'Personalized Medicine', 'velocity': 'accelerating'}
-             
-          ],
-          "audience_insights":[
-              'haha','ssas','asajskka'
-          ],
-          "pricing_models":[
-              'haha','ssas','asajskka'
-          ],
-          "opportunities":[
-             {
-                "opportunity":"Prioritize data privacy and transparency to build trust with users.",
-                "impact_score":0.9,
-                "confidence":0.9
-             },
-             {
-                "opportunity":"Implement rigorous data auditing and bias detection mechanisms.",
-                "impact_score":0.85,
-                "confidence":0.8
-             },
-             {
-                "opportunity":"Focus on AI as a tool to augment human creativity, not replace it.",
-                "impact_score":0.8,
-                "confidence":0.9
-             }
-          ],
-          "sources":[
-             "https://www.webfx.com/blog/ai/ai-marketing-advantages-disadvantages/"
-          ]
-       }
-    }
+           "project_brief":{
+              "request_type":"STRATEGY",
+              "project_title":"SaaS Product Marketing Strategy",
+              "product_or_service":"Koboi AI",
+              "business_description":"Koboi AI is the All-in-One AI Marketing Strategist for forward-thinking businesses. We automate the entire marketing process, from deep-web research and competitive analysis to generating a complete, tailored strategy and high-impact content. Stop guessing and start converting.",
+              "marketing_channels":"None",
+              "content_format":"None",
+              "goals":"Acquire 100 users in the first 3 months",
+              "target_audience":"Forward-thinking businesses",
+              "missing_information":[
+                 
+              ]
+           },
+           "compiled_summaries":{
+              "Top AI marketing strategy software weaknesses":{
+                 "https://storyteq.com/blog/what-are-the-limitations-of-ai-in-marketing-technology/":{
+                    "relevance":0.9,
+                    "impact_score":0.8,
+                    "summary":"AI in marketing technology has limitations in contextual understanding, creativity, and ethics. It relies on high-quality data and struggles with brand nuance and emotional storytelling. Human oversight is essential for strategy, creative direction, and ethical considerations to ensure brand consistency and prevent generic content.",
+                    "key_points":[
+                       "AI requires vast amounts of high-quality data to function effectively.",
+                       "AI struggles with understanding brand context and nuance, leading to generic content.",
+                       "Human creativity outperforms AI in original concept development and emotional storytelling.",
+                       "Ethical limitations of AI include privacy concerns, bias reinforcement, and lack of moral reasoning.",
+                       "An effective balance between AI and human input involves using AI for data analysis and optimization, while humans control creative direction and ethical decisions."
+                    ],
+                    "strategic_insights":[
+                       "Koboi AI needs to focus on areas where AI excels, such as data analysis and content variation, while ensuring human oversight for creative and strategic decisions.",
+                       "Differentiate Koboi AI by addressing the ethical concerns surrounding AI, such as data privacy and bias, by implementing robust security measures and ethical guidelines.",
+                       "Highlight the importance of human creativity and emotional intelligence in marketing, positioning Koboi AI as a tool that enhances rather than replaces human input."
+                    ]
+                 }
+              },
+              "AI marketing platform features underserved business needs":{
+                 "https://www.mdpi.com/2071-1050/17/20/9336":{
+                    "relevance":0.9,
+                    "impact_score":0.85,
+                    "summary":"This research investigates how AI-powered advisory platforms can address underserved business needs, specifically for SMEs in the U.S. The study found that integrated platforms offering multiple modules (MarketRadar, StrategicCoaching, ComplianceAlerts, PeerBenchmarking) drive better marketing outcomes than standalone tools. These findings emphasize the importance of modular AI design for improving marketing decision-making in capital-constrained SMEs.",
+                    "key_points":[
+                       "SMEs in underserved U.S. markets face barriers adopting AI for digital marketing.",
+                       "An AI-driven unified advisory platform was tested, integrating market insights, coaching, and compliance tools.",
+                       "SMEs using multiple modules of the platform achieved higher customer acquisition and revenue.",
+                       "Trust elements like PeerBenchmarks and ComplianceAlerts are key for platform adoption.",
+                       "The study introduces the 'compound benefits' framework to explain synergistic performance outcomes from cross-module AI engagement."
+                    ],
+                    "strategic_insights":[
+                       "Koboi AI can differentiate by offering modular and integrated AI marketing tools tailored to SMEs.",
+                       "Focus on building trust through transparency and explainability in AI recommendations.",
+                       "Partnerships with CDFIs and local incubators can facilitate adoption in underserved markets.",
+                       "Address digital literacy gaps with targeted training and user-friendly interfaces.",
+                       "Prioritize ethical considerations, such as bias mitigation, in AI design and implementation."
+                    ]
+                 }
+              },
+              "Pricing model gaps in AI marketing automation software 2025":{
+                 "https://digitalagencynetwork.com/ai-agency-pricing/":{
+                    "relevance":0.9,
+                    "impact_score":0.9,
+                    "summary":"The AI Agency Pricing Guide 2025 indicates that AI marketing automation pricing models are shifting from flat retainers and hourly rates to hybrid, performance-based, and usage-driven models. There's a wide range, from $99/month automation packages to $500K+ custom AI builds. Pricing transparency is increasing, with agencies separating platform costs (like OpenAI token usage) from execution fees.",
+                    "key_points":[
+                       "AI SEO services average $3,200/month, with retainers ranging from $2,000 to $20,000+.",
+                       "Custom AI development projects span $50K to $500K+, while SaaS-style offerings start at $99/month.",
+                       "AI automation builds typically cost $2,500 to $15,000+, with ongoing monitoring retainers from $500 to $5,000+.",
+                       "OpenAI’s GPT‑4 Turbo pricing ranges from $0.003 to $0.012 per 1,000 tokens, depending on usage tier."
+                    ],
+                    "strategic_insights":[
+                       "Koboi AI can explore hybrid pricing models (retainer + usage-based) to balance predictable revenue with value-based pricing.",
+                       "There's an opportunity to offer tiered pricing for different levels of AI marketing automation, from basic automation to advanced personalization and analytics.",
+                       "Koboi AI should consider offering productized services (e.g., AI content generation packages) to scale more predictably compared to custom AI projects.",
+                       "Focus on transparent pricing by clearly separating platform costs from service fees to build trust with forward-thinking businesses."
+                    ]
+                 }
+              },
+              "Leading AI marketing strategy brands user reviews and complaints":{
+                 "https://www.m1-project.com/blog/best-20-ai-marketing-use-cases#:~:text=Amazon%2C%20HubSpot%2C%20and%20Meta%20use,models%20that%20predict%20user%20behavior.":{
+                    "relevance":0.8,
+                    "impact_score":0.7,
+                    "summary":"M1-Project's blog post discusses 20 AI marketing use cases, emphasizing how AI can transform marketing by reducing costs, increasing conversions, and scaling marketing efforts. It highlights the importance of an adaptive AI orchestration framework and provides practical examples of how AI can be used to improve various marketing functions. It is important to note that the platform M1-Project offers a suite of tools, like the 'Marketing Strategy Builder', that aims to provide forward-thinking businesses with an All-in-One AI Marketing Strategist.",
+                    "key_points":[
+                       "AI can reduce customer acquisition costs and increase ROI through automated data analysis and personalization.",
+                       "An adaptive AI orchestration framework can significantly boost digital conversions.",
+                       "AI can be used for customer segmentation, predictive analytics, automated content creation, and campaign planning.",
+                       "M1-project's tools like ICP Generator, Marketing Strategy Builder, and Social Media Content Generator can be integrated into an AI framework."
+                    ],
+                    "strategic_insights":[
+                       "Koboi AI can leverage similar AI-driven strategies to automate and optimize marketing processes, potentially offering a competitive advantage.",
+                       "Focusing on emotion AI and real-time adaptation could differentiate Koboi AI from competitors.",
+                       "Highlighting use cases with quantifiable results (e.g., increased conversions, reduced costs) in marketing materials can attract forward-thinking businesses."
+                    ]
+                 }
+              },
+              "Whitespace opportunities in AI powered marketing solutions":{
+                 "https://www.demandfarm.com/blog/unlocking-white-space-opportunities-using-ai/":{
+                    "relevance":0.9,
+                    "impact_score":0.85,
+                    "summary":"DemandFarm emphasizes leveraging AI-powered analytics to identify white space opportunities within key account management. They highlight the use of AI in understanding customer intent, optimizing touchpoints, personalizing content, and hyper-targeting messaging to improve sales and marketing strategies. Social analytics is also presented as a method for identifying unexplored market segments and understanding competitor strategies.",
+                    "key_points":[
+                       "AI can assist in identifying account intent and optimizing customer touchpoints.",
+                       "Personalized content and hyper-targeted messaging, driven by AI, can enhance customer engagement.",
+                       "Social analytics helps in discovering unexplored market segments and competitor strategies.",
+                       "AI can accelerate white space analysis by providing a clear view of customer investments and helping to shortlist the right accounts for cross-selling."
+                    ],
+                    "strategic_insights":[
+                       "Koboi AI can focus on developing features that provide AI-driven insights into customer intent and behavior, enabling more personalized and effective marketing strategies.",
+                       "Opportunity to integrate social analytics capabilities to help businesses identify white space opportunities by monitoring market trends and competitor activities on social media.",
+                       "Consider offering AI-powered tools that streamline white space analysis, making it easier for sales teams to identify and capitalize on cross-selling opportunities, contributing to the goal of acquiring 100 users by showcasing the value of AI in uncovering hidden revenue potential."
+                    ]
+                 }
+              }
+           },
+           "market_research":{
+              "executive_summary":"Koboi AI can differentiate itself by offering modular, integrated AI marketing tools tailored to SMEs, focusing on building trust through transparency and explainability in AI recommendations. Hybrid pricing models balancing predictable revenue with value-based pricing, tiered pricing for different levels of AI marketing automation, and productized services can also provide a competitive advantage.",
+              "competitors":[
+                 {
+                    "name":"M1-Project",
+                    "description":"Offers a suite of AI-driven marketing tools, including a 'Marketing Strategy Builder'.",
+                    "strength":"Provides an all-in-one AI Marketing Strategist.",
+                    "weakness":"May lack focus on specific areas like emotion AI and real-time adaptation."
+                 },
+                 {
+                    "name":"HubSpot",
+                    "description":"Leading marketing automation platform.",
+                    "strength":"Extensive marketing automation capabilities and brand recognition.",
+                    "weakness":"Can be complex and expensive for smaller businesses."
+                 },
+                 {
+                    "name":"Meta",
+                    "description":"Provides AI-driven advertising and marketing solutions.",
+                    "strength":"Massive reach and data for ad targeting.",
+                    "weakness":"Raises privacy concerns and can be expensive for smaller campaigns."
+                 }
+              ],
+              "market_trends":[
+                 {
+                    "trend":"Shift towards hybrid and performance-based pricing models",
+                    "velocity":"accelerating"
+                 },
+                 {
+                    "trend":"Importance of modular and integrated AI marketing platforms",
+                    "velocity":"stable"
+                 },
+                 {
+                    "trend":"Need for transparency and explainability in AI recommendations",
+                    "velocity":"increasing"
+                 }
+              ],
+              "audience_insights":[
+                 "SMEs in underserved U.S. markets face barriers adopting AI for digital marketing.",
+                 "Forward-thinking businesses seek AI solutions that reduce customer acquisition costs and increase ROI.",
+                 "Businesses want to easily identify and capitalize on cross-selling opportunities."
+              ],
+              "pricing_models":[
+                 "Hybrid pricing (retainer + usage-based)",
+                 "Tiered pricing for different levels of AI marketing automation",
+                 "Productized services (e.g., AI content generation packages)"
+              ],
+              "opportunities":[
+                 {
+                    "opportunity":"Offer modular and integrated AI marketing tools tailored to SMEs",
+                    "impact_score":0.9,
+                    "confidence":0.9
+                 },
+                 {
+                    "opportunity":"Focus on building trust through transparency and explainability in AI recommendations",
+                    "impact_score":0.85,
+                    "confidence":0.95
+                 },
+                 {
+                    "opportunity":"Integrate social analytics capabilities to help businesses identify white space opportunities",
+                    "impact_score":0.8,
+                    "confidence":0.85
+                 }
+              ],
+              "sources":[
+                 "https://storyteq.com/blog/what-are-the-limitations-of-ai-in-marketing-technology/",
+                 "https://www.mdpi.com/2071-1050/17/20/9336",
+                 "https://digitalagencynetwork.com/ai-agency-pricing/",
+                 "https://www.m1-project.com/blog/best-20-ai-marketing-use-cases#:~:text=Amazon%2C%20HubSpot%2C%20and%20Meta%20use,models%20that%20predict%20user%20behavior.",
+                 "https://www.demandfarm.com/blog/unlocking-white-space-opportunities-using-ai/"
+              ]
+           }
+        }
     return mocked_result
 
 
@@ -461,6 +574,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
