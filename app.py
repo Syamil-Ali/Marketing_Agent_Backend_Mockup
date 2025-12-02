@@ -18,6 +18,12 @@ class MarketResearchOutput(BaseModel):
     compiled_summaries: Dict[str, Any]
     market_research: Dict[str, Any]
 
+class StrategyRequest(BaseModel):
+    project_brief: Dict[str, Any]
+    market_result: Optional[Dict[str, Any]] = None
+    require_exploration: bool = False
+    max_urls_per_query: int = 2
+    max_urls_total: Optional[int] = None
 
 # ----------- INPUT SCHEMA -----------
 class MarketInput(BaseModel):
@@ -298,139 +304,125 @@ async def market_analysis(input_data: MarketResearchRequest):
 
 
 # ----------- ENDPOINT 2: STRATEGIC ANALYSIS (MARKETING STRATEGY + MARKET) -----------
-@app.post("/strategic-analysis", response_model=StrategicOutput)
-async def strategic_analysis(input_data: MarketInput):
+@app.post("/strategic-analysis") # response_model=StrategicOutput
+async def strategic_analysis(input_data: StrategyRequest):
     # Reuse mocked market analysis
     market_analysis_result = await market_analysis(input_data)
     
-    marketing_strategy_result = {
-        "diagnosis": "Mid-sized tech companies struggle with workflow inefficiencies due to siloed strategies, software sprawl, employee resistance, and data privacy concerns. Existing workflow automation tools often fall short, with limitations in customization, integration, pricing transparency, and user experience. This creates an opportunity for an AI-driven solution that addresses these gaps by providing seamless integrations, transparent pricing, intuitive design, and robust AI insights, leveraging alternative data collection methods for deeper, more accurate workflow analysis.",
-        "strategic_direction": "CloudFlow should win by offering mid-sized tech companies an AI-powered workflow automation solution that delivers highly customizable, easily integrated, and transparently priced insights, driving demonstrable improvements in team efficiency and data-driven decision-making.",
-        "strategy_pillars": [
-            "AI-Powered Insights: Leverage real-time behavioral data and machine learning to provide uniquely accurate, actionable recommendations for workflow optimization, surpassing the limitations of traditional survey-based methods.",
-            "Seamless Integration & Customization: Offer extensive integration capabilities with existing systems and advanced customization options to address complex workflows, overcoming the integration challenges and limited customization of competitors like Kissflow and Nintex.",
-            "Transparent & Flexible Pricing: Implement transparent and scalable pricing plans, including tiered and usage-based options, to alleviate concerns about rising costs and provide predictable value as organizations grow, directly addressing a key market pain point."
-        ],
-        "messaging_framework": {
-            "value_prop": ["CloudFlow: Unlock peak team performance with AI-powered workflow automation. Get 10x more accurate insights and fix friction points others miss."],
-            "key_messages": [
-                "Eliminate workflow bottlenecks with AI-driven insights tailored to your team's actual behavior.",
-                "Seamlessly integrate with your existing tools and customize workflows to fit your unique needs.",
-                "Gain clear, predictable value with our transparent and scalable pricing plans.",
-                "Address data privacy concerns with our secure and compliant AI-driven workflow analysis."
-            ],
-            "proof_points": [
-                "AI-powered analysis of real-time behavioral data, providing 10x more accurate insights compared to traditional surveys.",
-                "Advanced customization options to handle complex workflows, differentiating from competitors with limited customization.",
-                "Seamless integration with a wide array of third-party applications, avoiding integration challenges faced by competitors.",
-                "Transparent and scalable pricing plans to address concerns about rising costs as organizations grow."
-            ]
-        },
-        "go_to_market_plan": {
-            "channels": [
-                "LinkedIn (Targeted ads to tech companies and HR departments)",
-                "SaaS industry blogs and publications",
-                "Webinars and online events showcasing AI-driven workflow automation",
-                "Partnerships with complementary SaaS providers"
-            ],
-            "plays": [
-                "Freemium model with tiered feature access",
-                "Targeted content marketing showcasing ROI of AI-driven workflow improvements",
-                "Case studies highlighting successful integrations and customizations",
-                "Interactive demos and free trials emphasizing ease of use and data privacy"
-            ],
-            "motion": [
-                "PLG (Product-Led Growth) with self-serve onboarding and in-app support, augmented by sales-assisted upgrades for larger accounts."
-            ]
-        },
-        "priorities": [
-            "Develop and launch the core AI-powered workflow analysis engine.",
-            "Build seamless integrations with popular SaaS tools used by mid-sized tech companies.",
-            "Implement transparent and flexible pricing plans.",
-            "Create targeted content marketing materials showcasing the value of CloudFlow.",
-            "Establish partnerships with complementary SaaS providers."
-        ]
-    }
-
-    content_strategy_result = {
-        "core_message": (
-            "CloudFlow unlocks peak team performance in mid-sized tech companies "
-            "by providing uniquely accurate, AI-powered insights and customizable "
-            "automation that legacy tools miss."
-        ),
-        "content_goals": [
-            "Generate awareness of CloudFlow's unique AI-driven approach to workflow optimization.",
-            "Build trust by demonstrating the accuracy and reliability of CloudFlow's insights.",
-            "Drive engagement through interactive demos and valuable content showcasing workflow improvements.",
-            "Educate the audience on real-time behavioral data vs. traditional surveys.",
-            "Facilitate sign-ups through freemium and targeted content.",
-            "Address data privacy concerns by highlighting security and compliance measures."
-        ],
-        "audience_motivations": [
-            "Increase team efficiency",
-            "Reduce bottlenecks",
-            "Improve decision-making",
-            "Find scalable solutions",
-            "Integrate easily with existing systems",
-            "Ensure data privacy"
-        ],
-        "strategic_angles": [
-            "The Hidden Costs of Inefficient Workflows",
-            "Beyond Surveys: Real Behavioral Insight",
-            "AI-Powered Workflow Automation for Mid-Sized Tech",
-            "Seamless Integration, Zero Disruption",
-            "From Insight to Action: Real-World Transformations"
-        ],
-        "recommended_formats": [
-            "Webinars", "Case Studies", "Blog Posts", "Infographics",
-            "Product Demos", "Whitepapers", "LinkedIn Articles", "Short Videos"
-        ],
-        "channel_playbook": {
-            "LinkedIn": [
-                "Targeted ads to HR & operations leaders.",
-                "Thought leadership on workflow automation.",
-                "Sponsored success-story content."
-            ],
-            "SaaS Blogs and Publications": [
-                "Guest posts",
-                "Industry commentary",
-                "Product review placements"
-            ],
-            "Webinars and Online Events": [
-                "AI workflow automation webinars",
-                "Product demos & Q&A sessions"
-            ],
-            "Partnerships with SaaS Providers": [
-                "Co-marketing efforts",
-                "Bundled workflows",
-                "Joint messaging campaigns"
-            ]
-        },
-        "mandatory_inclusions": {
-            "value_prop": [
-                "CloudFlow: Unlock peak team performance with AI-powered workflow automation."
-            ],
-            "key_messages": [
-                "Eliminate workflow bottlenecks with AI insights.",
-                "Customize and integrate effortlessly.",
-                "Predictable value with transparent pricing.",
-                "Secure and compliant workflow data analysis."
-            ],
-            "proof_points": [
-                "10x more accurate insights than surveys.",
-                "Advanced workflow customization.",
-                "Wide third-party integration support.",
-                "Transparent and scalable pricing."
-            ]
-        }
-    }
+    mockup_result = {'marketing_strategy': {'diagnosis': 'SMEs in underserved U.S. markets face significant barriers in adopting AI for digital marketing, despite a growing need for solutions that reduce customer acquisition costs and increase ROI. Competitors like HubSpot and Meta are often too complex or expensive, while others may lack focus. This creates an opportunity for AI solutions tailored to SMEs that easily identify cross-selling opportunities and build trust through transparency.',
+      'strategic_direction': 'Koboi AI will win by providing a modular, transparent, and integrated AI marketing platform specifically designed for SMEs in underserved U.S. markets, delivering measurable ROI and actionable insights.',
+      'strategy_pillars': ['Modular AI Solutions: Offer a suite of AI tools that can be adopted individually or integrated, catering to the specific needs and budgets of SMEs.',
+       "Transparency and Explainability: Focus on building trust by providing clear, understandable AI recommendations and insights, addressing the 'black box' concern.",
+       'Actionable ROI: Prioritize features that directly reduce customer acquisition costs, increase ROI, and identify cross-selling opportunities for immediate impact.'],
+      'messaging_framework': {'value_prop': ['Koboi AI: Your All-in-One AI Marketing Strategist for forward-thinking businesses. Stop guessing, start converting.'],
+       'key_messages': ['Get enterprise-level AI marketing strategy at a small business price.',
+        'Finally, AI-driven marketing insights that you can understand and trust.',
+        'Reduce customer acquisition costs and maximize ROI with AI-powered cross-selling.'],
+       'proof_points': ['AI algorithms analyze deep-web data to identify hidden market opportunities.',
+        'Transparency in AI recommendations builds trust and facilitates adoption.',
+        'Modular design allows businesses to customize AI tools to their specific needs and budget.']},
+      'go_to_market_plan': {'channels': ['Content Marketing (blog, webinars, case studies)',
+        'Social Media (LinkedIn, Twitter)',
+        'Partnerships with SME-focused organizations',
+        'Online advertising (Google Ads, social media ads targeting SMEs)'],
+       'plays': ['Free trial with limited features to showcase value',
+        'Educational content focused on AI marketing for SMEs',
+        "Webinars demonstrating the platform's capabilities",
+        'Case studies highlighting successful SME implementations'],
+       'motion': ['Self-serve with guided onboarding for initial user acquisition',
+        'Sales-assisted for larger or complex SME accounts']},
+      'priorities': ['Develop core modular AI marketing tools (strategy builder, content generator).',
+       'Implement transparency and explainability features in AI recommendations.',
+       "Create content and resources tailored to SMEs' AI marketing needs.",
+       'Establish partnerships with SME-focused organizations for distribution.',
+       'Offer hybrid and tiered pricing models to increase adoption.']},
+     'content_strategy': {'core_message': 'Koboi AI empowers forward-thinking businesses in underserved U.S. markets to achieve measurable ROI through transparent, modular, and integrated AI marketing solutions, eliminating guesswork and driving conversions.',
+      'content_goals': ['Awareness of Koboi AI as a tailored solution for SMEs.',
+       'Education on the benefits of AI in marketing for SMEs.',
+       'Trust-building through transparent AI recommendations.',
+       'Engagement with modular AI tools and their specific applications.',
+       'Conversion to free trial users and ultimately, paying customers.',
+       'Objection-handling related to the complexity and cost of AI solutions.'],
+      'audience_motivations': ['Reduce customer acquisition costs.',
+       'Increase marketing ROI.',
+       'Gain actionable insights without complex analysis.',
+       'Implement AI solutions that are easy to understand and trust.',
+       'Customize AI tools to their specific business needs and budget.',
+       'Identify cross-selling opportunities to maximize revenue.'],
+      'strategic_angles': ["Demystifying AI: Koboi AI breaks down the 'black box' of AI, providing transparent and understandable recommendations for SMEs.",
+       "Modular AI for Every Need: Showcase how Koboi AI's modular design allows businesses to start small and scale their AI adoption based on specific needs and budget.",
+       'ROI-Focused AI: Highlight case studies and data demonstrating how Koboi AI directly reduces customer acquisition costs and increases ROI for SMEs.',
+       'AI-Powered Cross-Selling: Focus on how Koboi AI identifies hidden cross-selling opportunities to drive revenue growth.',
+       'Leveling the Playing Field: Position Koboi AI as the solution that brings enterprise-level AI marketing strategy to SMEs at an affordable price.'],
+      'recommended_formats': ['Blog posts explaining AI concepts and their application to SME marketing.',
+       "Webinars demonstrating the platform's capabilities and ROI.",
+       'Case studies highlighting successful SME implementations.',
+       'Short explainer videos showcasing the transparency and ease of use of Koboi AI.',
+       'Interactive ROI calculators allowing SMEs to estimate potential gains.',
+       'Social media content sharing tips and insights on AI marketing for SMEs.'],
+      'channel_playbook': {'Content Marketing (blog, webinars, case studies)': ['Focus on educational content that addresses the specific AI marketing needs and challenges of SMEs.',
+        'Showcase successful SME implementations and ROI achieved through Koboi AI.'],
+       'Social Media (LinkedIn, Twitter)': ['Engage with SME communities and share valuable insights on AI marketing.',
+        'Promote webinars, case studies, and other educational content.',
+        'Highlight the transparency and ease of use of Koboi AI.'],
+       'Partnerships with SME-focused organizations': ['Collaborate on webinars and content creation to reach a wider audience.',
+        'Offer exclusive discounts or trials to members of partner organizations.',
+        'Build trust and credibility through endorsements from trusted SME advocates.'],
+       'Online advertising (Google Ads, social media ads targeting SMEs)': ['Target SMEs in underserved U.S. markets with ads highlighting the ROI and affordability of Koboi AI.',
+        'Use ad copy that emphasizes the transparency and ease of use of the platform.',
+        'Run retargeting campaigns to drive free trial sign-ups.']},
+      'mandatory_inclusions': {'value_prop': ['All-in-One AI Marketing Strategist',
+        'Stop guessing, start converting',
+        'Enterprise-level AI marketing strategy at a small business price'],
+       'key_messages': ['AI-driven marketing insights that you can understand and trust.',
+        'Reduce customer acquisition costs and maximize ROI with AI-powered cross-selling.',
+        'Modular design allows businesses to customize AI tools to their specific needs and budget.'],
+       'proof_points': ['AI algorithms analyze deep-web data to identify hidden market opportunities.',
+        'Transparency in AI recommendations builds trust and facilitates adoption.',
+        'Modular design allows businesses to customize AI tools to their specific needs and budget.',
+        'Data-backed ROI improvements for SMEs in underserved markets.']}},
+     'market_research': {'executive_summary': 'Koboi AI can differentiate itself by offering modular, integrated AI marketing tools tailored to SMEs, focusing on building trust through transparency and explainability in AI recommendations. Hybrid pricing models balancing predictable revenue with value-based pricing, tiered pricing for different levels of AI marketing automation, and productized services can also provide a competitive advantage.',
+      'competitors': [{'name': 'M1-Project',
+        'description': "Offers a suite of AI-driven marketing tools, including a 'Marketing Strategy Builder'.",
+        'strength': 'Provides an all-in-one AI Marketing Strategist.',
+        'weakness': 'May lack focus on specific areas like emotion AI and real-time adaptation.'},
+       {'name': 'HubSpot',
+        'description': 'Leading marketing automation platform.',
+        'strength': 'Extensive marketing automation capabilities and brand recognition.',
+        'weakness': 'Can be complex and expensive for smaller businesses.'},
+       {'name': 'Meta',
+        'description': 'Provides AI-driven advertising and marketing solutions.',
+        'strength': 'Massive reach and data for ad targeting.',
+        'weakness': 'Raises privacy concerns and can be expensive for smaller campaigns.'}],
+      'market_trends': [{'trend': 'Shift towards hybrid and performance-based pricing models',
+        'velocity': 'accelerating'},
+       {'trend': 'Importance of modular and integrated AI marketing platforms',
+        'velocity': 'stable'},
+       {'trend': 'Need for transparency and explainability in AI recommendations',
+        'velocity': 'increasing'}],
+      'audience_insights': ['SMEs in underserved U.S. markets face barriers adopting AI for digital marketing.',
+       'Forward-thinking businesses seek AI solutions that reduce customer acquisition costs and increase ROI.',
+       'Businesses want to easily identify and capitalize on cross-selling opportunities.'],
+      'pricing_models': ['Hybrid pricing (retainer + usage-based)',
+       'Tiered pricing for different levels of AI marketing automation',
+       'Productized services (e.g., AI content generation packages)'],
+      'opportunities': [{'opportunity': 'Offer modular and integrated AI marketing tools tailored to SMEs',
+        'impact_score': 0.9,
+        'confidence': 0.9},
+       {'opportunity': 'Focus on building trust through transparency and explainability in AI recommendations',
+        'impact_score': 0.85,
+        'confidence': 0.95},
+       {'opportunity': 'Integrate social analytics capabilities to help businesses identify white space opportunities',
+        'impact_score': 0.8,
+        'confidence': 0.85}],
+      'sources': ['https://storyteq.com/blog/what-are-the-limitations-of-ai-in-marketing-technology/',
+       'https://www.mdpi.com/2071-1050/17/20/9336',
+       'https://digitalagencynetwork.com/ai-agency-pricing/',
+       'https://www.m1-project.com/blog/best-20-ai-marketing-use-cases#:~:text=Amazon%2C%20HubSpot%2C%20and%20Meta%20use,models%20that%20predict%20user%20behavior.',
+       'https://www.demandfarm.com/blog/unlocking-white-space-opportunities-using-ai/']}}
     
-    return StrategicOutput(
-        market_analysis=market_analysis_result,
-        marketing_strategy=MarketingStrategyOutput(**marketing_strategy_result),
-        content_strategy=ContentStrategyOutput(**content_strategy_result)
-        
-    )
+    
+    return mockup_result
 
 
 
@@ -574,6 +566,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
