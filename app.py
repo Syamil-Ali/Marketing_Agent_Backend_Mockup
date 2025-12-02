@@ -25,6 +25,16 @@ class StrategyRequest(BaseModel):
     max_urls_per_query: int = 2
     max_urls_total: Optional[int] = None
 
+
+class ContentRequest(BaseModel):
+    project_brief: Dict[str, Any]
+    content_strategy: Dict[str, Any]
+    content_format: str = "Email"
+    
+class ContentOutput(BaseModel):
+    content_brief: Dict[str, Any]
+    content_creation: Dict[str, Any]
+
 # ----------- INPUT SCHEMA -----------
 class MarketInput(BaseModel):
     project_title: str
@@ -427,145 +437,121 @@ async def strategic_analysis(input_data: StrategyRequest):
 
 
 
-@app.post("/content-creation", response_model=FullContentCreationResponse)
-def create_content(input: ContentCreationInput):
+@app.post("/content-creation", response_model=ContentOutput)
+def create_content(input: ContentRequest):
 
     # ----- 1. Content Brief -----
-    brief = ContentBriefOutput(
-        brief_title="CloudFlow B2B SaaS Launch: AI-Powered Workflow Optimization for Tech Companies",
-        core_message="CloudFlow unlocks peak team performance in mid-sized tech companies with uniquely accurate, AI-powered insights and customizable automation that legacy tools miss.",
-        creative_angles=[
-            "Quantify the hidden financial costs of inefficient workflows and highlight CloudFlow's ROI.",
-            "Showcase the limitations of traditional surveys and the superior accuracy of CloudFlow's real-time behavioral analysis.",
-            "Tailor messaging to the unique challenges of mid-sized tech, emphasizing scalability and customization.",
-            "Demonstrate seamless integration with existing tools for zero disruption.",
-            "Present case studies illustrating tangible workflow transformations achieved with CloudFlow."
-        ],
-        content_goals=[
-            "Generate awareness of CloudFlow's unique AI-driven approach.",
-            "Build trust by demonstrating the accuracy of insights.",
-            "Drive engagement through interactive demos.",
-            "Educate on the benefits of real-time behavioral data analysis.",
-            "Facilitate sign-ups via a freemium model.",
-            "Address data privacy concerns."
-        ],
-        audience_profile=(
-            "Mid-sized tech companies (50-200 employees) seeking to increase team efficiency, reduce "
-            "bottlenecks, improve data-driven decision-making, find affordable and scalable solutions, "
-            "seamlessly integrate tools, and ensure data privacy."
-        ),
-        mandatory_inclusions={
-            "value_prop": [
-                "CloudFlow: Unlock peak team performance with AI-powered workflow automation. "
-                "Get 10x more accurate insights and fix friction points others miss."
-            ],
-            "key_messages": [
-                "Eliminate workflow bottlenecks with AI-driven insights tailored to your team's actual behavior.",
-                "Seamlessly integrate with your existing tools and customize workflows to fit your unique needs.",
-                "Gain clear, predictable value with our transparent and scalable pricing plans.",
-                "Address data privacy concerns with our secure and compliant AI-driven workflow analysis."
-            ],
-            "proof_points": [
-                "AI-powered analysis of real-time behavioral data, providing 10x more accurate insights compared to traditional surveys.",
-                "Advanced customization options to handle complex workflows, differentiating from competitors with limited customization.",
-                "Seamless integration with a wide array of third-party applications, avoiding integration challenges faced by competitors.",
-                "Transparent and scalable pricing plans to address concerns about rising costs as organizations grow."
-            ]
-        },
-        recommended_formats=[
-            "Webinars", "Case Studies", "Blog Posts", "Infographics",
-            "Product Demos", "Whitepapers", "LinkedIn Articles", "Short Videos"
-        ],
-        channel_guidance={
-            "LinkedIn": [
-                "Target HR, operations, and tech decision-makers in mid-sized tech.",
-                "Share thought leadership on AI-driven workflow automation.",
-                "Run sponsored content showcasing customer success and product demos."
-            ],
-            "SaaS Blogs and Publications": [
-                "Publish guest posts on workflow optimization and AI benefits.",
-                "Participate in industry discussions.",
-                "Secure product reviews and comparisons."
-            ],
-            "Webinars and Online Events": [
-                "Showcase AI-driven workflow automation.",
-                "Offer interactive product demos and Q&A.",
-                "Partner with industry experts."
-            ],
-            "Partnerships with SaaS Providers": [
-                "Co-market with complementary SaaS tools.",
-                "Offer bundled solutions and integrated workflows.",
-                "Cross-promote to relevant customer segments."
-            ]
-        },
-        tone_and_voice="Professional, engaging, persuasive, data-driven, and slightly technical, while remaining accessible to non-technical decision-makers.",
-        constraints=[
-            "Avoid overly technical jargon that might alienate decision-makers.",
-            "Do not make unsubstantiated claims about AI capabilities; always back up claims with data and proof points.",
-            "Ensure all content aligns with data privacy and security best practices.",
-            "Avoid direct comparisons with competitors that could be construed as disparaging."
-        ]
-    )
+    mocked_result = {
+       "content_brief":{
+          "brief_title":"Koboi AI: AI-Powered Marketing Strategy for SME Growth",
+          "core_message":"Koboi AI empowers forward-thinking businesses in underserved U.S. markets to achieve measurable ROI through transparent, modular, and integrated AI marketing solutions, eliminating guesswork and driving conversions.",
+          "creative_angles":[
+             "Demystify AI for SMEs: Show how Koboi AI provides transparent and understandable AI recommendations.",
+             "Modular AI: Showcase Koboi AI's modular design, allowing businesses to scale AI adoption based on needs and budget.",
+             "ROI-Focused AI: Highlight data and case studies demonstrating how Koboi AI reduces customer acquisition costs and increases ROI for SMEs.",
+             "AI-Powered Cross-Selling: Focus on how Koboi AI identifies hidden cross-selling opportunities to drive revenue growth.",
+             "Level the Playing Field: Position Koboi AI as an affordable enterprise-level AI marketing strategy for SMEs."
+          ],
+          "content_goals":[
+             "Increase awareness of Koboi AI as a tailored solution for SMEs.",
+             "Educate SMEs on the benefits of AI in marketing.",
+             "Build trust through transparent AI recommendations.",
+             "Drive engagement with modular AI tools and their applications.",
+             "Convert users to free trials and paying customers.",
+             "Address objections related to the complexity and cost of AI solutions."
+          ],
+          "audience_profile":"Forward-thinking businesses in underserved U.S. markets seeking to reduce customer acquisition costs, increase marketing ROI, and gain actionable insights through easy-to-understand AI solutions that can be customized to their needs and budget.",
+          "mandatory_inclusions":{
+             "value_prop":[
+                "All-in-One AI Marketing Strategist",
+                "Stop guessing, start converting",
+                "Enterprise-level AI marketing strategy at a small business price"
+             ],
+             "key_messages":[
+                "AI-driven marketing insights that you can understand and trust.",
+                "Reduce customer acquisition costs and maximize ROI with AI-powered cross-selling.",
+                "Modular design allows businesses to customize AI tools to their specific needs and budget."
+             ],
+             "proof_points":[
+                "AI algorithms analyze deep-web data to identify hidden market opportunities.",
+                "Transparency in AI recommendations builds trust and facilitates adoption.",
+                "Modular design allows businesses to customize AI tools to their specific needs and budget.",
+                "Data-backed ROI improvements for SMEs in underserved markets."
+             ]
+          },
+          "recommended_formats":[
+             "Blog posts explaining AI concepts for SME marketing.",
+             "Webinars demonstrating platform capabilities and ROI.",
+             "Case studies highlighting successful SME implementations.",
+             "Short explainer videos showcasing ease of use.",
+             "Interactive ROI calculators for potential gains.",
+             "Social media content sharing AI marketing tips for SMEs."
+          ],
+          "channel_guidance":{
+             "Content Marketing (blog, webinars, case studies)":[
+                "Focus on educational content addressing SME AI marketing needs.",
+                "Showcase successful SME implementations and ROI achieved through Koboi AI."
+             ],
+             "Social Media (LinkedIn, Twitter)":[
+                "Engage with SME communities and share valuable insights on AI marketing.",
+                "Promote webinars, case studies, and educational content.",
+                "Highlight transparency and ease of use."
+             ],
+             "Partnerships with SME-focused organizations":[
+                "Collaborate on webinars and content to reach a wider audience.",
+                "Offer exclusive discounts/trials to members.",
+                "Build trust through endorsements from SME advocates."
+             ],
+             "Online advertising (Google Ads, social media ads targeting SMEs)":[
+                "Target SMEs in underserved U.S. markets, highlighting ROI and affordability.",
+                "Emphasize transparency and ease of use in ad copy.",
+                "Run retargeting campaigns for free trial sign-ups."
+             ]
+          },
+          "tone_and_voice":"Professional, engaging, persuasive, and trustworthy. Simplify complex AI concepts, focusing on clear ROI and ease of use for SMEs.",
+          "constraints":[
+             "Avoid technical jargon and overly complex explanations.",
+             "Do not make unsubstantiated claims about AI capabilities.",
+             "Ensure all content is factually accurate and data-backed.",
+             "Maintain a focus on transparency and ethical AI practices.",
+             "Refrain from directly comparing Koboi AI to competitors in a negative way."
+          ]
+       },
+       "content_creation":{
+          "final_content":"Subject: Stop Guessing, Start Converting: AI-Powered Marketing for Your Business\n\nHi [Name],\n\nAre you tired of throwing marketing dollars into the void, hoping something sticks? As a forward-thinking business in an underserved U.S. market, you deserve a marketing strategy that delivers measurable ROI without the guesswork.\n\nImagine having an all-in-one AI marketing strategist working for you, uncovering hidden opportunities and optimizing your campaigns for maximum impact. That's exactly what Koboi AI offers. Our AI algorithms analyze deep-web data to identify hidden market opportunities so you can get one step ahead of the competition.\n\nKoboi AI is designed specifically for SMEs like yours. Our modular approach means you can customize the AI tools to fit your specific needs and budget, scaling as you grow. No more bloated enterprise solutions – just the AI power you need, when you need it.\n\nHere's how Koboi AI can transform your marketing:\n\n*   **Reduce customer acquisition costs:** AI-powered insights help you target the right customers with the right message.\n*   **Maximize ROI:** Identify cross-selling opportunities you never knew existed, driving revenue growth.\n*   **Gain actionable insights:** Understand your market and customers better than ever before with transparent AI recommendations.\n\nReady to see the difference AI can make? Start your free trial today and stop guessing, start converting!\n\n[Link to Free Trial]\n\nTo your success,\nThe Koboi AI Team",
+          "applied_angles":[
+             "Demystify AI for SMEs: Show how Koboi AI provides transparent and understandable AI recommendations.",
+             "Modular AI: Showcase Koboi AI's modular design, allowing businesses to scale AI adoption based on needs and budget."
+          ],
+          "key_inclusions":{
+             "value_prop":[
+                "All-in-One AI Marketing Strategist",
+                "Stop guessing, start converting",
+                "Enterprise-level AI marketing strategy at a small business price"
+             ],
+             "key_messages":[
+                "AI-driven marketing insights that you can understand and trust.",
+                "Reduce customer acquisition costs and maximize ROI with AI-powered cross-selling.",
+                "Modular design allows businesses to customize AI tools to their specific needs and budget."
+             ],
+             "proof_points":[
+                "AI algorithms analyze deep-web data to identify hidden market opportunities.",
+                "Transparency in AI recommendations builds trust and facilitates adoption.",
+                "Modular design allows businesses to customize AI tools to their specific needs and budget.",
+                "Data-backed ROI improvements for SMEs in underserved markets."
+             ]
+          },
+          "tone_and_voice":"Professional, engaging, persuasive, and trustworthy. Simplified complex AI concepts, focusing on clear ROI and ease of use for SMEs.",
+          "format":"Email"
+       }
+    }
 
-    # ----- 2. Final Content Output -----
-    content = ContentCreationOutput(
-        final_content="""Subject: Unlock Peak Performance: AI-Powered Workflow Automation for Your Tech Team
-
-Hi [Name],
-
-Are hidden workflow bottlenecks costing your tech team valuable time and resources? Traditional surveys often miss the mark, providing inaccurate or incomplete insights. Imagine knowing exactly where friction exists and having the power to eliminate it.
-
-CloudFlow is an AI-powered workflow automation platform designed specifically for mid-sized tech companies like yours. Our unique approach analyzes real-time behavioral data, giving you **10x more accurate insights** than traditional methods.
-
-With CloudFlow, you can:
-
-* **Eliminate workflow bottlenecks:** AI-driven insights pinpoint inefficiencies, allowing you to optimize processes for maximum productivity.
-* **Seamlessly integrate:** Connect CloudFlow with your existing tools and customize workflows to fit your unique needs, avoiding disruptive overhauls.
-* **Gain clear, predictable value:** Our transparent and scalable pricing ensures you see a strong return on investment as you grow.
-
-Worried about data privacy? Our AI-driven workflow analysis is secure and compliant, ensuring your team's data is protected.
-
-Ready to see how CloudFlow can transform your team's performance? Sign up for a free demo today and discover the power of AI-driven workflow automation:
-
-[Link to Demo]
-
-Best regards,
-The CloudFlow Team""",
-        applied_angles=[
-            "Quantify the hidden financial costs of inefficient workflows and highlight CloudFlow's ROI.",
-            "Showcase the limitations of traditional surveys and the superior accuracy of CloudFlow's real-time behavioral analysis.",
-            "Tailor messaging to the unique challenges of mid-sized tech, emphasizing scalability and customization."
-        ],
-        key_inclusions={
-            "value_prop": [
-                "CloudFlow: Unlock peak team performance with AI-powered workflow automation. "
-                "Get 10x more accurate insights and fix friction points others miss."
-            ],
-            "key_messages": [
-                "Eliminate workflow bottlenecks with AI-driven insights tailored to your team's actual behavior.",
-                "Seamlessly integrate with your existing tools and customize workflows to fit your unique needs.",
-                "Gain clear, predictable value with our transparent and scalable pricing plans.",
-                "Address data privacy concerns with our secure and compliant AI-driven workflow analysis."
-            ],
-            "proof_points": [
-                "AI-powered analysis of real-time behavioral data, providing 10x more accurate insights compared to traditional surveys.",
-                "Advanced customization options to handle complex workflows, differentiating from competitors with limited customization.",
-                "Seamless integration with a wide array of third-party applications, avoiding integration challenges faced by competitors.",
-                "Transparent and scalable pricing plans to address concerns about rising costs as organizations grow."
-            ]
-        },
-        tone_and_voice="Professional, engaging, persuasive, data-driven, and slightly technical, while remaining accessible to non-technical decision-makers.",
-        format="email"
-    )
-
-    return FullContentCreationResponse(
-        brief=brief,
-        content=content
-    )
+    return mocked_result
 
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
