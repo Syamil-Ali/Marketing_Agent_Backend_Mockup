@@ -146,16 +146,17 @@ async def market_analysis(input_data: MarketResearchRequest):
        "market_research":{
           "executive_summary":"AI marketing platforms face challenges related to data privacy, potential for biases, and a lack of human creativity. Koboi AI needs to address these issues by prioritizing data privacy, implementing bias detection mechanisms, and focusing on augmenting human creativity with AI.",
           "competitors":[
-             
+              'haha','ssas','asajskka'
           ],
           "market_trends":[
+              'haha','ssas','asajskka'
              
           ],
           "audience_insights":[
-             
+              'haha','ssas','asajskka'
           ],
           "pricing_models":[
-             
+              'haha','ssas','asajskka'
           ],
           "opportunities":[
              {
@@ -460,6 +461,7 @@ The CloudFlow Team""",
 # ----------- LOCAL DEV MODE -----------
 #if __name__ == "__main__":
 #    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 
 
 
